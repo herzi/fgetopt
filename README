@@ -1,0 +1,26 @@
+Copyright (c) Michael Anthony 2002 <mike at unlikely org>
+Please see the source files for terms of licensing and (lack of) warranty.
+
+Last updated: 2003-01-25
+
+If you're lucky, the latest version of this software might be located at:
+http://unlikely.org/code/fgetopt/
+
+The fgetopt package is a drop-in replacement for getopt_long, except
+that it's not quite as slick.  We are always "POSIXLY_CORRECT" because
+we don't re-order non-option arguments so that they form a contiguous
+block at the end of the list.  (Consequently, any "+" at the beginning
+of your short option string is ignored.)  We also don't grok
+abbreviated long option names.  And we don't do that "W;" thing where
+"W;" in your short option string means treat "-W foo" means "--foo".
+Neither do we recognize a "-" at the beginning of the short option
+string as meaning to treat non-option argv-elements as if they were
+the arguments of an option with character code 1.  I think everything
+else is the same.
+
+Contributors:
+Kovacs Baldvin <kb136@hszk.bme.hu>
+
+Release history:
+2003-01-25: 0.1: The software has been around for a couple of years,
+but I finally decided to slap a version number on it.
