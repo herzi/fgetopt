@@ -19,13 +19,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "getopt.h"
+#include "fgetopt.h"
+
 #include <string.h>
 #include <stdio.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 char *optarg = 0;
 int optind = -1;
@@ -33,7 +30,7 @@ int opterr = 1;
 int optopt = 0;
 static int newinv = 1;
 
-int getopt_long (
+int fgetopt_long (
     int argc, char *const argv[],
     const char *optstring,
     const struct option *longopts,
@@ -91,9 +88,8 @@ int getopt_long (
                         int ret = 0;
                         if (! op->has_arg && *end == '=')
                         {
-                            fprintf (stderr, "%s: option `--%s' doesn't"
-                                     " allow an argument\n",
-                                     argv[0], op->name);
+                            fprintf(stderr, "%s: option `--%s' doesn't"
+                                    " allow an argument", argv[0], op->name);
                             ret = '?';
                         }
                         else
@@ -108,10 +104,8 @@ int getopt_long (
                                 else if (optind + 1 >= argc
                                          && op->has_arg == required_argument)
                                 {
-                                    fprintf (
-                                        stderr, "%s: option `--%s' requires"
-                                        " an argument\n",
-                                        argv[0], op->name);
+                                    fprintf(stderr, "%s: option `--%s' requires"
+                                            " an argument", argv[0], op->name);
                                     return '?';
                                 }
                                 else if (optind + 1 >= argc)
@@ -141,8 +135,8 @@ int getopt_long (
                         return ret;
                     }
                 }
-                fprintf (stderr, "%s: unrecognized option `--%s'\n",
-                         argv[0], begin);
+                fprintf(stderr, "%s: unrecognized option `--%s'",
+                        argv[0], begin);
                 return '?';
             }
         }
@@ -176,8 +170,8 @@ int getopt_long (
                 }
                 else if (optind + 1 >= argc)
                 {
-                    fprintf (stderr, "%s: option requires an argument -- %c\n",
-                             argv[0], *op);
+                    fprintf(stderr, "%s: option requires an argument -- %c",
+                            argv[0], *op);
                     return '?';
                 }
                 else
@@ -195,13 +189,13 @@ int getopt_long (
         }
         else
         {
-            fprintf (stderr, "%s: invalid option -- %c\n",
-                     argv[0], argv[optind][nextchar - 1]);
+            fprintf(stderr, "%s: invalid option -- %c",
+                    argv[0], argv[optind][nextchar - 1]);
             return '?';
         }
     }
+
+	/* FIXME? */
+	return -1;
 }
 
-#ifdef __cplusplus
-}
-#endif

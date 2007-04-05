@@ -19,13 +19,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef GETOPT_H
-#define GETOPT_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-
+#ifndef FGETOPT_H
+#define FGETOPT_H
 
 extern char *optarg;
 extern int optind, opterr, optopt;
@@ -51,13 +46,8 @@ struct option
     int val;
 };
 
-int getopt_long (int argc, char *const argv[],
+int fgetopt_long (int argc, char *const argv[],
                   const char *optstring,
                   const struct option *longopts, int *longindex);
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
